@@ -43,11 +43,18 @@ sub _build_full_name {
     return "${db_name}.${name}";
 }
 
-=method query ($query)
+=method query ($query, $limit, $skip, $sortby)
 
     my $cursor = $collection->query({ i => { '$gt' => 42 } });
 
+    my $cursor = $collection->query({ }, 10, 10);
+
+    my $cursor = $collection->query(
+        { location => "Vancouver" }, 0, 0, { age => 1 });
+
 Executes the given C<$query> and returns a C<MongoDB::Cursor> with the results.
+Limit the number of results with C<$limit>, optionally skipping C<$skip>
+number of results. The query results can be sorted with C<$sortby>.
 
 =method find_one ($query)
 

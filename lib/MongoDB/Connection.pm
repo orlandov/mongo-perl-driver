@@ -121,11 +121,12 @@ sub find_one {
 }
 
 sub query {
-    my ($self, $ns, $query, $limit, $skip) = @_;
+    my ($self, $ns, $query, $limit, $skip, $sortby) = @_;
     $query ||= {};
     $limit ||= 0;
     $skip  ||= 0;
-    return $self->_query($ns, $query, $limit, $skip);
+    $sortby ||= {};
+    return $self->_query($ns, $query, $limit, $skip, $sortby);
 }
 
 sub insert {
